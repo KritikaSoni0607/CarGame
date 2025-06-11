@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import CarGame from "./components/CarGame";
+import "./App.css";
 
 function App() {
+  const [started, setStarted] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+  {!started ? (
+    <div className="home-screen">
+      <div className="home-box">
+        <h1 className="game-title">🏎️ HyperSpeed Racer</h1>
+        <button className="start-button" onClick={() => setStarted(true)}>
+          Start Game
+        </button>
+      </div>
     </div>
+  ) : (
+    <CarGame goHome={() => setStarted(false)} />
+  )}
+</div>
+
+      
   );
 }
 
